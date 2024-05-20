@@ -13,6 +13,7 @@ int main() {
     sf::Clock clock;
 
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Rep Game");
+    window.setFramerateLimit(240);
 
     player.Initialize();
     skeleton.Initialize();
@@ -27,7 +28,9 @@ int main() {
     while(window.isOpen())
     {
         float time = clock.getElapsedTime().asMicroseconds();
-        clock.restart();
+        sf::Time deltaTimer = clock.restart();
+        float deltaTime = deltaTimer.asMilliseconds();
+
 
         time = time / 1500;
 
@@ -38,8 +41,10 @@ int main() {
              }
         }
 
-        skeleton.Update();
-        player.Update(frame, time, skeleton);
+        sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(window));
+
+        skeleton.Update(deltaTime);
+        player.Update(frame, time, skeleton, deltaTime, mousePosition);
 
 
         window.clear(sf::Color::Black);

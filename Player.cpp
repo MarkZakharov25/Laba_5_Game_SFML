@@ -2,6 +2,8 @@
 #include "Math.h"
 #include "iostream"
 
+Player::Player() : maxFireRate(400) {}
+
 void Player::Initialize() {
 
     bounding_rect.setFillColor(sf::Color::Transparent);
@@ -34,23 +36,36 @@ void Player::Load() {
     sprite_fireball.scale(3, 3);
 }
 
-void Player::Update(float& frame, float& time, Skeleton& skeleton) {
+void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTime, sf::Vector2f &mousePosition) {
 
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)){
+    fireRateTimer += deltaTime;
+
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && fireRateTimer >= maxFireRate){
         container_of_fireball.push_back(sprite_fireball);
         container_of_fireball[container_of_fireball.size() - 1].setPosition(sprite.getPosition());
 
+        fireRateTimer = 0;
     }
 
     for(int i = 0; i < container_of_fireball.size(); i++){
-        sf::Vector2f direction = skeleton.sprite.getPosition() - container_of_fireball[i].getPosition();
+        sf::Vector2f direction = mousePosition - container_of_fireball[i].getPosition();
         direction = Math::NormalizeVector(direction);
-        container_of_fireball[i].setPosition(container_of_fireball[i].getPosition() + direction );
+        container_of_fireball[i].setPosition(container_of_fireball[i].getPosition() + direction * fireBallSpeed * deltaTime);
+        //COLLISION
+
+        if(skeleton.health > 0){
+            if(Math::IsCollisionHappen(container_of_fireball[i].getGlobalBounds(), skeleton.sprite.getGlobalBounds())){
+                skeleton.ChangeHealth(-10);
+                container_of_fireball.erase(container_of_fireball.begin() + i);
+                std::cout << "Skeleton health:" << skeleton.health << std::endl;
+
+            }
+        }
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
         Y_index = 3;
-        sprite.move(1 * time, 0);
+        sprite.move(1 * PlayerSpeed * deltaTime, 0);
         frame += 0.017 * time;
         if(frame > 8){
             frame -= 8;
@@ -60,7 +75,7 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton) {
 
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
         Y_index = 1;
-        sprite.move(-1 * time, 0);
+        sprite.move(-1 * PlayerSpeed * deltaTime, 0);
         frame += 0.015 * time;
         if(frame > 2){
             frame -= 2;
