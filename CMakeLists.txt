@@ -5,20 +5,31 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc")
 set(SFML_STATIC_LIBRARIES TRUE)
 
-add_executable(Game_1 main.cpp
+set(SFML_DIR "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/cmake/SFML")
+find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+
+include_directories(${SFML_INCLUDE_DIR})
+include_directories(${PROJECT_SOURCE_DIR})
+
+set(TINYXML2_DIR "C:/Users/D/CLionProjects/Game_1")
+add_library(tinyxml2 STATIC ${TINYXML2_DIR}/tinyxml2.cpp)
+include_directories(${TINYXML2_DIR})
+
+set(SOURCES
+        main.cpp
         Player.cpp
-        Player.h
         Skeleton.cpp
-        Skeleton.h
         FireBall.cpp
-        FireBall.h
         Math.cpp
-        Math.h)
+        TileMap.cpp
+)
 
-set(SFML_DIR "C:\\Users\\D\\CLionProjects\\lib\\SFML\\GCC 7.3.0 MinGW (SEH) - 64-bit\\SFML-2.5.1\\lib\\cmake\\SFML")
+add_executable(Game_1 ${SOURCES})
 
-target_link_libraries(Game_1 sfml-graphics)
-target_include_directories(Game_1 PUBLIC "C:\\Users\\D\\CLionProjects\\lib\\SFML\\GCC 7.3.0 MinGW (SEH) - 64-bit\\SFML-2.5.1\\include")
+target_link_libraries(Game_1 sfml-graphics sfml-window sfml-system)
 
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
-find_package(SFML 2.5 REQUIRED graphics network audio window system)
+target_link_libraries(Game_1 tinyxml2)
+
+target_include_directories(Game_1 PUBLIC "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include")
+
+

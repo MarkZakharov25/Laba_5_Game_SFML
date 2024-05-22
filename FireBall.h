@@ -11,17 +11,18 @@ class FireBall {
 private:
     sf::Texture texture_fireball;
     sf::Sprite sprite_fireball;
-    std::vector<sf::Sprite> container_of_fireball;
+    sf::Vector2f direction;
 
 public:
     float speed;
-    sf::Vector2i direction;
-    float  fireRate;
+
 public:
-    void Initialize();
-    void Load();
+    FireBall(std::string filename);
+    void Initialize(const sf::Vector2f& position, sf::Vector2f& target, float speed);
     void Update(float deltaTime);
     void Draw(sf::RenderWindow& window);
+
+    inline const sf::FloatRect GetGlobalBounds() {return sprite_fireball.getGlobalBounds();}
 
 };
 

@@ -41,19 +41,51 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/D/CLionProjects/Game_1/cmake-build-debug/
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target tinyxml2
+
+
+#############################################
+# Order-only phony target for tinyxml2
+
+build cmake_object_order_depends_target_tinyxml2: phony || CMakeFiles/tinyxml2.dir
+
+build CMakeFiles/tinyxml2.dir/tinyxml2.cpp.obj: CXX_COMPILER__tinyxml2_unscanned_Debug C$:/Users/D/CLionProjects/Game_1/tinyxml2.cpp || cmake_object_order_depends_target_tinyxml2
+  DEP_FILE = CMakeFiles\tinyxml2.dir\tinyxml2.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1
+  OBJECT_DIR = CMakeFiles\tinyxml2.dir
+  OBJECT_FILE_DIR = CMakeFiles\tinyxml2.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target tinyxml2
+
+
+#############################################
+# Link the static library libtinyxml2.a
+
+build libtinyxml2.a: CXX_STATIC_LIBRARY_LINKER__tinyxml2_Debug CMakeFiles/tinyxml2.dir/tinyxml2.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = CMakeFiles\tinyxml2.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = libtinyxml2.a
+  TARGET_PDB = tinyxml2.a.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target Game_1
 
 
 #############################################
 # Order-only phony target for Game_1
 
-build cmake_object_order_depends_target_Game_1: phony || CMakeFiles/Game_1.dir
+build cmake_object_order_depends_target_Game_1: phony || cmake_object_order_depends_target_tinyxml2
 
 build CMakeFiles/Game_1.dir/main.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug C$:/Users/D/CLionProjects/Game_1/main.cpp || cmake_object_order_depends_target_Game_1
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\Game_1.dir\main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
   OBJECT_DIR = CMakeFiles\Game_1.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
 
@@ -61,7 +93,7 @@ build CMakeFiles/Game_1.dir/Player.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\Game_1.dir\Player.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
   OBJECT_DIR = CMakeFiles\Game_1.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
 
@@ -69,7 +101,7 @@ build CMakeFiles/Game_1.dir/Skeleton.cpp.obj: CXX_COMPILER__Game_1_unscanned_Deb
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\Game_1.dir\Skeleton.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
   OBJECT_DIR = CMakeFiles\Game_1.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
 
@@ -77,7 +109,7 @@ build CMakeFiles/Game_1.dir/FireBall.cpp.obj: CXX_COMPILER__Game_1_unscanned_Deb
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\Game_1.dir\FireBall.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
   OBJECT_DIR = CMakeFiles\Game_1.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
 
@@ -85,7 +117,15 @@ build CMakeFiles/Game_1.dir/Math.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug C
   DEFINES = -DSFML_STATIC
   DEP_FILE = CMakeFiles\Game_1.dir\Math.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  OBJECT_DIR = CMakeFiles\Game_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
+
+build CMakeFiles/Game_1.dir/TileMap.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug C$:/Users/D/CLionProjects/Game_1/TileMap.cpp || cmake_object_order_depends_target_Game_1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\Game_1.dir\TileMap.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
   OBJECT_DIR = CMakeFiles\Game_1.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
 
@@ -97,10 +137,10 @@ build CMakeFiles/Game_1.dir/Math.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug C
 #############################################
 # Link the executable Game_1.exe
 
-build Game_1.exe: CXX_EXECUTABLE_LINKER__Game_1_Debug CMakeFiles/Game_1.dir/main.cpp.obj CMakeFiles/Game_1.dir/Player.cpp.obj CMakeFiles/Game_1.dir/Skeleton.cpp.obj CMakeFiles/Game_1.dir/FireBall.cpp.obj CMakeFiles/Game_1.dir/Math.cpp.obj | C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-graphics-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-window-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-system-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libfreetype.a
+build Game_1.exe: CXX_EXECUTABLE_LINKER__Game_1_Debug CMakeFiles/Game_1.dir/main.cpp.obj CMakeFiles/Game_1.dir/Player.cpp.obj CMakeFiles/Game_1.dir/Skeleton.cpp.obj CMakeFiles/Game_1.dir/FireBall.cpp.obj CMakeFiles/Game_1.dir/Math.cpp.obj CMakeFiles/Game_1.dir/TileMap.cpp.obj | C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-graphics-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-window-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-system-s-d.a libtinyxml2.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libfreetype.a || libtinyxml2.a
   FLAGS = -g
   LINK_FLAGS = -static -static-libgcc
-  LINK_LIBRARIES = "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-graphics-s-d.a"  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-window-s-d.a"  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-system-s-d.a"  -lwinmm  -lgdi32  -lOpenGL32  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libfreetype.a"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-graphics-s-d.a"  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-window-s-d.a"  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-system-s-d.a"  libtinyxml2.a  -lwinmm  -lgdi32  -lOpenGL32  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libfreetype.a"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Game_1.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -136,6 +176,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build Game_1: phony Game_1.exe
 
+build tinyxml2: phony libtinyxml2.a
+
 # =============================================================================
 # Folder targets.
 
@@ -144,7 +186,7 @@ build Game_1: phony Game_1.exe
 #############################################
 # Folder: C:/Users/D/CLionProjects/Game_1/cmake-build-debug
 
-build all: phony Game_1.exe
+build all: phony libtinyxml2.a Game_1.exe
 
 # =============================================================================
 # Built-in targets
