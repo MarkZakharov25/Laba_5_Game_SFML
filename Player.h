@@ -7,15 +7,14 @@
 #include "Skeleton.h"
 #include "FireBall.h"
 #include "TileMap.h"
+#include "AnimationState.h"
 
 
 class Player {
 private:
     sf::Texture texture;
-    sf::Sprite sprite;
     int X_index;
     int Y_index;
-    sf::Vector2i size;
     float PlayerSpeed = 0.7f;
     float fireBallSpeed = 2.0f;
     float maxFireRate;
@@ -39,13 +38,22 @@ private:
     float dx;
     float dy;
 
+    //-------------------------------------------------------------------------------------------------
+
 public:
     Player();
     void Initialize();
     void Load();
     void Update(float& frame, float& time, Skeleton& skeleton, float deltaTime, sf::Vector2f &mousePosition, const std::vector<TileObject>& objects);
     void Draw(sf::RenderWindow& window);
-    void handleCollisions(sf::Vector2f& moveDirection, const std::vector<TileObject>& objects);
+
+public:
+    sf::Sprite sprite;
+    sf::Vector2i size;
+    int currentFrame;
+    float frameTime;
+    float frameDuration;
+    int frameCount;
 
 
 };

@@ -19,14 +19,14 @@ void Player::Load() {
     texture.loadFromFile("C:/Users/D/CLionProjects/Game_1/assets/main_character/textures/AnimationSheet_Character.png");
 
     sprite.setTexture(texture);
-     X_index = 0;
-     Y_index = 0;
+    X_index = 0;
+    Y_index = 0;
 
     sprite.setTextureRect(sf::IntRect(X_index * size.x, Y_index * size.y, size.x, size.y));
-    sprite.scale(5, 5);
+    sprite.scale(3, 3);
 
     size = sf::Vector2i(32, 32);
-    bounding_rect.setSize(sf::Vector2f(size.x * 5, size.y * 5));
+    bounding_rect.setSize(sf::Vector2f(size.x * 3, size.y * 3));
     ;
 }
 
@@ -63,7 +63,7 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
         Y_index = 3;
         moveDirection.x += PlayerSpeed * deltaTime;
-        frame += 0.017 * time;
+        frame += 0.01 * deltaTime;
         if(frame > 8){
             frame -= 8;
         }
@@ -73,7 +73,7 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
         Y_index = 3;
         moveDirection.x -= PlayerSpeed * deltaTime;
-        frame += 0.015 * time;
+        frame += 0.01 * time;
         if(frame > 8){
             frame -= 8;
         }
@@ -82,7 +82,7 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
 
     else{
         Y_index = 0;
-        frame += 0.003 * time;
+        frame += 0.002 * deltaTime;
         if(frame > 2){
             frame -= 2;
         }
@@ -106,8 +106,12 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
     }
 
     onGround = false;
-    handleCollisions(moveDirection, objects);
-    sprite.move(moveDirection.x, moveDirection.y);
+
+    Math::handleHorizontalCollisions(sprite, moveDirection, objects);
+    sprite.move(moveDirection.x, 0);
+
+    Math::handleVerticalCollisions(sprite, moveDirection, objects, onGround, verticalSpeed);
+    sprite.move(0, moveDirection.y);
 
     bounding_rect.setPosition(sprite.getPosition());
 
@@ -115,40 +119,6 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
         std::cout << "Collision" << std::endl;
     }
 
-}
-
-void Player::handleCollisions(sf::Vector2f& moveDirection, const std::vector<TileObject>& objects) {
-    sf::FloatRect playerBounds = sprite.getGlobalBounds();
-    playerBounds.left += moveDirection.x;
-    for (const auto& object : objects) {
-        if (object.name == "solid") {
-            sf::FloatRect objectBounds(object.x, object.y, object.width, object.height);
-            if (playerBounds.intersects(objectBounds)) {
-                if (moveDirection.x > 0) {
-                    moveDirection.x = objectBounds.left - playerBounds.left - playerBounds.width;
-                } else if (moveDirection.x < 0) {
-                    moveDirection.x = objectBounds.left + objectBounds.width - playerBounds.left;
-                }
-            }
-        }
-    }
-
-    playerBounds = sprite.getGlobalBounds();
-    playerBounds.top += moveDirection.y;
-    for (const auto& object : objects) {
-        if (object.name == "solid") {
-            sf::FloatRect objectBounds(object.x, object.y, object.width, object.height);
-            if (playerBounds.intersects(objectBounds)) {
-                if (moveDirection.y > 0) {
-                    moveDirection.y = objectBounds.top - playerBounds.top - playerBounds.height;
-                    onGround = true;
-                } else if (moveDirection.y < 0) {
-                    moveDirection.y = objectBounds.top + objectBounds.height - playerBounds.top;
-                }
-                verticalSpeed = 0;
-            }
-        }
-    }
 }
 
 void Player::Draw(sf::RenderWindow& window){

@@ -4,6 +4,7 @@
 #define GAME_1_SKELETON_H
 
 #include <SFML/Graphics.hpp>
+#include "TileMap.h"
 
 
 class Skeleton {
@@ -15,6 +16,17 @@ private:
     sf::Font font;
     sf::Text healthText;
 
+    //---------------------------
+    float verticalSpeed;
+    float gravity;
+    bool onGround;
+
+    int direction;
+    float distanceMoved;
+    float moveDistance;
+
+    bool isAttacking;
+
 
     sf::RectangleShape bounding_rect;
 
@@ -25,7 +37,7 @@ public:
     Skeleton();
     void Initialize();
     void Load();
-    void Update(float deltaTime);
+    void Update(float& deltaTime, const std::vector<TileObject>& objects, float& frame, const sf::Vector2f& playerPosition);
     void Draw(sf::RenderWindow& window);
     void ChangeHealth(int health);
 

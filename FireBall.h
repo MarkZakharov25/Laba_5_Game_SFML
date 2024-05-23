@@ -5,6 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "iostream"
+#include "TileMap.h"
 
 class FireBall {
 
@@ -23,6 +24,8 @@ public:
     void Draw(sf::RenderWindow& window);
 
     inline const sf::FloatRect GetGlobalBounds() {return sprite_fireball.getGlobalBounds();}
+
+
 
 };
 

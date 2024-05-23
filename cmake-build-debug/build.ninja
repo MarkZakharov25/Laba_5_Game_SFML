@@ -129,6 +129,14 @@ build CMakeFiles/Game_1.dir/TileMap.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debu
   OBJECT_DIR = CMakeFiles\Game_1.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
 
+build CMakeFiles/Game_1.dir/WalkState.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug C$:/Users/D/CLionProjects/Game_1/WalkState.cpp || cmake_object_order_depends_target_Game_1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\Game_1.dir\WalkState.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  OBJECT_DIR = CMakeFiles\Game_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Game_1
@@ -137,7 +145,7 @@ build CMakeFiles/Game_1.dir/TileMap.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debu
 #############################################
 # Link the executable Game_1.exe
 
-build Game_1.exe: CXX_EXECUTABLE_LINKER__Game_1_Debug CMakeFiles/Game_1.dir/main.cpp.obj CMakeFiles/Game_1.dir/Player.cpp.obj CMakeFiles/Game_1.dir/Skeleton.cpp.obj CMakeFiles/Game_1.dir/FireBall.cpp.obj CMakeFiles/Game_1.dir/Math.cpp.obj CMakeFiles/Game_1.dir/TileMap.cpp.obj | C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-graphics-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-window-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-system-s-d.a libtinyxml2.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libfreetype.a || libtinyxml2.a
+build Game_1.exe: CXX_EXECUTABLE_LINKER__Game_1_Debug CMakeFiles/Game_1.dir/main.cpp.obj CMakeFiles/Game_1.dir/Player.cpp.obj CMakeFiles/Game_1.dir/Skeleton.cpp.obj CMakeFiles/Game_1.dir/FireBall.cpp.obj CMakeFiles/Game_1.dir/Math.cpp.obj CMakeFiles/Game_1.dir/TileMap.cpp.obj CMakeFiles/Game_1.dir/WalkState.cpp.obj | C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-graphics-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-window-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-system-s-d.a libtinyxml2.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libfreetype.a || libtinyxml2.a
   FLAGS = -g
   LINK_FLAGS = -static -static-libgcc
   LINK_LIBRARIES = "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-graphics-s-d.a"  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-window-s-d.a"  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-system-s-d.a"  libtinyxml2.a  -lwinmm  -lgdi32  -lOpenGL32  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libfreetype.a"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

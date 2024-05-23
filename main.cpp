@@ -4,7 +4,8 @@
 #include "TileMap.h"
 #include <iostream>
 
-float frame = 0;
+float frame_1 = 0;
+float frame_2 = 0;
 
 int main() {
     Player player;
@@ -13,6 +14,8 @@ int main() {
 
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Rep Game");
     window.setFramerateLimit(240);
+
+    sf::View camera(sf::FloatRect(0, 0, 1920, 1080));;
 
     player.Initialize();
     skeleton.Initialize();
@@ -55,10 +58,13 @@ int main() {
             }
         }
 
-        sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(window));
+        sf::Vector2f mousePosition = window.mapPixelToCoords(sf::Mouse::getPosition(window), camera);
 
-        skeleton.Update(deltaTime);
-        player.Update(frame, time, skeleton, deltaTime, mousePosition, objects);
+        skeleton.Update(deltaTime, objects, frame_2, player.sprite.getPosition());
+        player.Update(frame_1, time, skeleton, deltaTime, mousePosition, objects);
+
+        camera.setCenter(player.sprite.getPosition());
+        window.setView(camera);
 
         window.clear(sf::Color::Black);
 
