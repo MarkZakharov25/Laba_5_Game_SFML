@@ -7,8 +7,10 @@
 #include "Skeleton.h"
 #include "FireBall.h"
 #include "TileMap.h"
-#include "AnimationState.h"
+#include "Trap.h"
+#include "Shield.h"
 
+class Skeleton;
 
 class Player {
 private:
@@ -39,13 +41,29 @@ private:
     float dy;
 
     //-------------------------------------------------------------------------------------------------
+    int health;
+    int startPositionX;
+    int startPositionY;
+
+    //-------------------------------------------------------------------------------------
+    Shield shield;
+    sf::RectangleShape healthBarBackground;
+    int maxHealth;
+    sf::RectangleShape healthBar;
 
 public:
     Player();
     void Initialize();
     void Load();
-    void Update(float& frame, float& time, Skeleton& skeleton, float deltaTime, sf::Vector2f &mousePosition, const std::vector<TileObject>& objects);
+    void Update(float& frame, float& time, Skeleton& skeleton, float deltaTime, sf::Vector2f &mousePosition, const std::vector<TileObject>& objects, const std::vector<Trap>& traps);
     void Draw(sf::RenderWindow& window);
+
+    int GetHealth() const;
+    void SetHealth(int health);
+    void HandleTrapCollision();
+    void Respawn();
+
+    const sf::FloatRect GetGlobalBounds() const { return sprite.getGlobalBounds(); }
 
 public:
     sf::Sprite sprite;

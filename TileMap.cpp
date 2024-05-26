@@ -162,3 +162,30 @@ const std::vector<TileObject>& TileMap::getObjects() const {
     return m_tileMapData.objects;
 }
 
+const std::vector<TileLayer>& TileMap::getLayers() const {
+    return m_tileMapData.layers;
+}
+
+int TileMap::getTileWidth() const {
+    return m_tileMapData.tileWidth;
+}
+
+int TileMap::getTileHeight() const {
+    return m_tileMapData.tileHeight;
+}
+
+const sf::Texture& TileMap::getTileset() const {
+    return m_tileset;
+}
+
+
+
+void TileMap::addQuad(const sf::Vertex* quad) {
+    for (auto& layer : m_layersVertices) {
+        sf::VertexArray& vertices = layer;
+        for (int i = 0; i < 4; ++i) {
+            vertices.append(quad[i]);
+        }
+    }
+}
+

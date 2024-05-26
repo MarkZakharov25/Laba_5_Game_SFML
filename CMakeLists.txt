@@ -22,6 +22,10 @@ set(SOURCES
         FireBall.cpp
         Math.cpp
         TileMap.cpp
+        Trap.cpp
+        Trap.h
+        Shield.cpp
+        Shield.h
 )
 
 add_executable(Game_1 ${SOURCES})

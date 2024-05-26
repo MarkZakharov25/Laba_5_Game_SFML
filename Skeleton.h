@@ -5,6 +5,9 @@
 
 #include <SFML/Graphics.hpp>
 #include "TileMap.h"
+#include "Player.h"
+
+class Player;
 
 
 class Skeleton {
@@ -26,6 +29,7 @@ private:
     float moveDistance;
 
     bool isAttacking;
+    float attackCooldown;
 
 
     sf::RectangleShape bounding_rect;
@@ -37,7 +41,7 @@ public:
     Skeleton();
     void Initialize();
     void Load();
-    void Update(float& deltaTime, const std::vector<TileObject>& objects, float& frame, const sf::Vector2f& playerPosition);
+    void Update(float& deltaTime, const std::vector<TileObject>& objects, float& frame, const sf::Vector2f& playerPosition, Player& player);
     void Draw(sf::RenderWindow& window);
     void ChangeHealth(int health);
 

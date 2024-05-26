@@ -2,29 +2,33 @@
 #include "Player.h"
 #include "Skeleton.h"
 #include "TileMap.h"
+#include "Trap.h"
 #include <iostream>
 
 float frame_1 = 0;
 float frame_2 = 0;
+float frame_3 = 0;
 
 int main() {
     Player player;
     Skeleton skeleton;
+    Trap spike;
     sf::Clock clock;
 
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Rep Game");
     window.setFramerateLimit(240);
 
-    sf::View camera(sf::FloatRect(0, 0, 1920, 1080));;
+    sf::View camera(sf::FloatRect(0, 0, 1920, 1080));
 
     player.Initialize();
     skeleton.Initialize();
+    spike.Initialize("C:/Users/D/CLionProjects/Game_1/assets/Trap/Spike_B.png", sf::Vector2i(32, 32));
 
     player.Load();
     skeleton.Load();
 
     TileMap map;
-    if (!map.load("C:/Users/D/CLionProjects/untitled3/demo_level.tmx", "C:/Users/D/CLionProjects/untitled3/Tilesetv3.png")) {
+    if (!map.load("C:/Users/D/CLionProjects/untitled3/demo_level_4.tmx", "C:/Users/D/CLionProjects/untitled3/Tilesetv3.png")) {
         return -1;
     }
 
@@ -37,12 +41,8 @@ int main() {
     sf::FloatRect mapBounds = map.getLocalBounds();
 
     float scale = windowHeight / mapBounds.height;
-    std::cout<<"scale:" << scale << std::endl;
+    std::cout << "scale:" << scale << std::endl;
     map.setScale(scale, scale);
-
-//    float offsetX = (window.getSize().x - mapBounds.width * scale) / 2;
-
-//    map.setPosition(offsetX, 0);
 
     while (window.isOpen()) {
         float time = clock.getElapsedTime().asMicroseconds();
@@ -60,8 +60,14 @@ int main() {
 
         sf::Vector2f mousePosition = window.mapPixelToCoords(sf::Mouse::getPosition(window), camera);
 
-        skeleton.Update(deltaTime, objects, frame_2, player.sprite.getPosition());
-        player.Update(frame_1, time, skeleton, deltaTime, mousePosition, objects);
+        skeleton.Update(deltaTime, objects, frame_2, player.sprite.getPosition(), player);
+        std::vector<Trap> traps = {spike};
+        player.Update(frame_1, time, skeleton, deltaTime, mousePosition, objects, traps);
+        spike.Update(frame_3, deltaTime, 10);
+
+        if (player.GetHealth() <= 0) {
+            player.Respawn();
+        }
 
         camera.setCenter(player.sprite.getPosition());
         window.setView(camera);
@@ -71,12 +77,14 @@ int main() {
         window.draw(map);
         player.Draw(window);
         skeleton.Draw(window);
+        spike.Draw(window);
 
         window.display();
     }
 
     return 0;
 }
+
 
 
 

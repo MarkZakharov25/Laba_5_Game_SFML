@@ -3,16 +3,53 @@
 #include "FireBall.h"
 #include "iostream"
 #include "TileMap.h"
+#include "Trap.h"
+#include "Shield.h"
 
-Player::Player() : maxFireRate(400) {}
+Player::Player() : maxFireRate(400), startPositionX(100), startPositionY(100) {
+    maxHealth = 100;
+    health = maxHealth;
+    healthBar.setSize(sf::Vector2f(50.0f, 5.0f));
+    healthBar.setFillColor(sf::Color::Green);
+
+    healthBarBackground.setSize(sf::Vector2f(50.0f, 5.0f));
+    healthBarBackground.setFillColor(sf::Color::Red);
+}
+
+int Player::GetHealth() const {
+    return health;
+}
+
+void Player::SetHealth(int h) {
+    health = h;
+}
+
+
+void Player::Respawn() {
+    sprite.setPosition(startPositionX, startPositionY);
+    health = 100;
+}
 
 void Player::Initialize() {
     bounding_rect.setFillColor(sf::Color::Transparent);
     bounding_rect.setOutlineColor(sf::Color::Red);
     bounding_rect.setOutlineThickness(2);
-
+    sprite.setPosition(startPositionX, startPositionY);
 
 }
+
+void Player::HandleTrapCollision() {
+    if (!shield.IsActive()) {
+        health -= 50;
+        if (health <= 0) {
+            Respawn();
+        }
+    }
+    else  {
+        std::cout << "Shield absorbed the damage!" << std::endl;
+    }
+}
+
 
 void Player::Load() {
 
@@ -30,10 +67,31 @@ void Player::Load() {
     ;
 }
 
-void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTime, sf::Vector2f &mousePosition, const std::vector<TileObject>& objects) {
+void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTime, sf::Vector2f &mousePosition, const std::vector<TileObject>& objects, const std::vector<Trap>& traps) {
 
     fireRateTimer += deltaTime;
     jumpTimer += deltaTime;
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) {
+        shield.Activate();
+    }
+
+    shield.Update(deltaTime / 1000.0f);
+
+     for (const auto& trap : traps) {
+        if (Math::IsCollisionHappen(sprite.getGlobalBounds(), trap.getSprite().getGlobalBounds())) {
+            if (sprite.getPosition().y + sprite.getGlobalBounds().height <= trap.getPosition().y + 5) {
+                std::cout << "Collision with Trap from above" << std::endl;
+                if (shield.IsActive()) {
+                    verticalSpeed = -9.0f;
+                    onGround = false;
+                    shield.TurnOffShield();
+                } else {
+                    HandleTrapCollision();
+                }
+            }
+        }
+    }
 
     if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && fireRateTimer >= maxFireRate){
 
@@ -50,7 +108,7 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
 
         if(skeleton.health > 0){
             if(Math::IsCollisionHappen(container_of_fireball[i].GetGlobalBounds(), skeleton.sprite.getGlobalBounds())){
-                skeleton.ChangeHealth(-10);
+                skeleton.ChangeHealth(-20);
                 container_of_fireball.erase(container_of_fireball.begin() + i);
                 std::cout << "Skeleton health:" << skeleton.health << std::endl;
 
@@ -103,6 +161,7 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
             onGround = true;
             verticalSpeed = 0;
         }
+
     }
 
     onGround = false;
@@ -115,19 +174,41 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
 
     bounding_rect.setPosition(sprite.getPosition());
 
-    if(Math::IsCollisionHappen(sprite.getGlobalBounds(), skeleton.sprite.getGlobalBounds())){
-        std::cout << "Collision" << std::endl;
+    if (Math::IsCollisionHappen(sprite.getGlobalBounds(), skeleton.sprite.getGlobalBounds())) {
+        std::cout << "Collision with Skeleton" << std::endl;
+        sf::Vector2f pushDirection = sprite.getPosition() - skeleton.sprite.getPosition();
+        float pushDistance = 1.0f;
+        if (pushDirection.x > 0) {
+            sprite.move(pushDistance, 0);
+        } else {
+            sprite.move(-pushDistance, 0);
+        }
     }
+
+    for (const auto& trap : traps) {
+        if (Math::IsCollisionHappen(sprite.getGlobalBounds(), trap.getSprite().getGlobalBounds())) {
+            HandleTrapCollision();
+        }
+    }
+
+    healthBar.setSize(sf::Vector2f((static_cast<float>(health) / maxHealth) * 50.0f, 5.0f));
+    healthBar.setPosition(sprite.getPosition().x, sprite.getPosition().y - 10);
+    healthBarBackground.setPosition(sprite.getPosition().x, sprite.getPosition().y - 10);
+
 
 }
 
 void Player::Draw(sf::RenderWindow& window){
 
     window.draw(sprite);
-    window.draw(bounding_rect);
+//    window.draw(bounding_rect);
+    shield.Draw(window, sprite.getPosition());
 
     for(int i = 0; i < container_of_fireball.size(); i++){
         container_of_fireball[i].Draw(window);
     }
+
+    window.draw(healthBarBackground);
+    window.draw(healthBar);
 
 }

@@ -42,6 +42,16 @@ public:
     sf::FloatRect getLocalBounds() const;
     const std::vector<TileObject>& getObjects() const;
 
+    const std::vector<TileLayer>& getLayers() const;
+
+    void addQuad(const sf::Vertex* quad);
+
+    //----------------------------------------------------
+    int getTileWidth() const;
+    int getTileHeight() const;
+    const sf::Texture& getTileset() const;
+
+
 
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -50,7 +60,7 @@ private:
     std::vector<sf::VertexArray> m_layersVertices;
     sf::Texture m_tileset;
     TileMapData m_tileMapData;
-    float scale = 6.75f;
+    float scale = 2.7f;
     sf::RectangleShape rect;
 };
 
