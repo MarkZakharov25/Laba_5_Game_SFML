@@ -42,7 +42,7 @@ public:
     void Initialize();
     void Load();
     void Update(float& deltaTime, const std::vector<TileObject>& objects, float& frame, const sf::Vector2f& playerPosition, Player& player);
-    void Draw(sf::RenderWindow& window);
+    void Draw(sf::RenderWindow& window) const;
     void ChangeHealth(int health);
 
 };

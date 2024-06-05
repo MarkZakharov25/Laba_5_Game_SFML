@@ -145,6 +145,38 @@ build CMakeFiles/Game_1.dir/Shield.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug
   OBJECT_DIR = CMakeFiles\Game_1.dir
   OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
 
+build CMakeFiles/Game_1.dir/Energy.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug C$:/Users/D/CLionProjects/Game_1/Energy.cpp || cmake_object_order_depends_target_Game_1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\Game_1.dir\Energy.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  OBJECT_DIR = CMakeFiles\Game_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
+
+build CMakeFiles/Game_1.dir/TextureManager.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug C$:/Users/D/CLionProjects/Game_1/TextureManager.cpp || cmake_object_order_depends_target_Game_1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\Game_1.dir\TextureManager.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  OBJECT_DIR = CMakeFiles\Game_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
+
+build CMakeFiles/Game_1.dir/MapManager.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug C$:/Users/D/CLionProjects/Game_1/MapManager.cpp || cmake_object_order_depends_target_Game_1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\Game_1.dir\MapManager.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  OBJECT_DIR = CMakeFiles\Game_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
+
+build CMakeFiles/Game_1.dir/Enemy.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug C$:/Users/D/CLionProjects/Game_1/Enemy.cpp || cmake_object_order_depends_target_Game_1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\Game_1.dir\Enemy.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/D/CLionProjects/Game_1 -isystem "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/include"
+  OBJECT_DIR = CMakeFiles\Game_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Game_1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Game_1
@@ -153,7 +185,7 @@ build CMakeFiles/Game_1.dir/Shield.cpp.obj: CXX_COMPILER__Game_1_unscanned_Debug
 #############################################
 # Link the executable Game_1.exe
 
-build Game_1.exe: CXX_EXECUTABLE_LINKER__Game_1_Debug CMakeFiles/Game_1.dir/main.cpp.obj CMakeFiles/Game_1.dir/Player.cpp.obj CMakeFiles/Game_1.dir/Skeleton.cpp.obj CMakeFiles/Game_1.dir/FireBall.cpp.obj CMakeFiles/Game_1.dir/Math.cpp.obj CMakeFiles/Game_1.dir/TileMap.cpp.obj CMakeFiles/Game_1.dir/Trap.cpp.obj CMakeFiles/Game_1.dir/Shield.cpp.obj | C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-graphics-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-window-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-system-s-d.a libtinyxml2.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libfreetype.a || libtinyxml2.a
+build Game_1.exe: CXX_EXECUTABLE_LINKER__Game_1_Debug CMakeFiles/Game_1.dir/main.cpp.obj CMakeFiles/Game_1.dir/Player.cpp.obj CMakeFiles/Game_1.dir/Skeleton.cpp.obj CMakeFiles/Game_1.dir/FireBall.cpp.obj CMakeFiles/Game_1.dir/Math.cpp.obj CMakeFiles/Game_1.dir/TileMap.cpp.obj CMakeFiles/Game_1.dir/Trap.cpp.obj CMakeFiles/Game_1.dir/Shield.cpp.obj CMakeFiles/Game_1.dir/Energy.cpp.obj CMakeFiles/Game_1.dir/TextureManager.cpp.obj CMakeFiles/Game_1.dir/MapManager.cpp.obj CMakeFiles/Game_1.dir/Enemy.cpp.obj | C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-graphics-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-window-s-d.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libsfml-system-s-d.a libtinyxml2.a C$:/Users/D/CLionProjects/lib/SFML/GCC$ 7.3.0$ MinGW$ (SEH)$ -$ 64-bit/SFML-2.5.1/lib/libfreetype.a || libtinyxml2.a
   FLAGS = -g
   LINK_FLAGS = -static -static-libgcc
   LINK_LIBRARIES = "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-graphics-s-d.a"  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-window-s-d.a"  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libsfml-system-s-d.a"  libtinyxml2.a  -lwinmm  -lgdi32  -lOpenGL32  "C:/Users/D/CLionProjects/lib/SFML/GCC 7.3.0 MinGW (SEH) - 64-bit/SFML-2.5.1/lib/libfreetype.a"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

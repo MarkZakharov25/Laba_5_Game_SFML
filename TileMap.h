@@ -41,7 +41,7 @@ public:
     bool load(const std::string& filename, const std::string& tileset);
     sf::FloatRect getLocalBounds() const;
     const std::vector<TileObject>& getObjects() const;
-
+    std::vector<sf::Vector2f> getSpawnPositions(const std::string& objectName) const;
     const std::vector<TileLayer>& getLayers() const;
 
     void addQuad(const sf::Vertex* quad);

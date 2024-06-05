@@ -27,7 +27,7 @@ void Skeleton::Initialize() {
 }
 
 void Skeleton::Load() {
-    sprite.setPosition(1000, 300);
+//    sprite.setPosition(1000, 300);
     X_index = 0;
     Y_index = 0;
 
@@ -41,7 +41,6 @@ void Skeleton::Load() {
 }
 
 void Skeleton::Update(float& deltaTime, const std::vector<TileObject>& objects, float& frame, const sf::Vector2f& playerPosition, Player& player) {
-    std::cout << "Skeleton::Update start" << std::endl;
 
     attackCooldown -= deltaTime;
     if (health > 0) {
@@ -135,10 +134,9 @@ void Skeleton::Update(float& deltaTime, const std::vector<TileObject>& objects, 
         healthText.setPosition(sprite.getPosition() + sf::Vector2f(size.x * 5, 0));
     }
 
-    std::cout << "Skeleton::Update end" << std::endl;
 }
 
-void Skeleton::Draw(sf::RenderWindow &window) {
+void Skeleton::Draw(sf::RenderWindow &window) const{
     if(health > 0){
         window.draw(sprite);
         window.draw(healthText);

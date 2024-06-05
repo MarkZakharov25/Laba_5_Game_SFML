@@ -9,8 +9,10 @@
 #include "TileMap.h"
 #include "Trap.h"
 #include "Shield.h"
+#include "Energy.h"
+#include "Enemy.h"
 
-class Skeleton;
+class Enemy;
 
 class Player {
 private:
@@ -51,16 +53,23 @@ private:
     int maxHealth;
     sf::RectangleShape healthBar;
 
+    //----------------------------------------------------------------------------
+    sf::RectangleShape energyBar;
+    sf::RectangleShape energyBarBackground;
+    int energy;
+    int maxEnergy;
+
 public:
     Player();
     void Initialize();
     void Load();
-    void Update(float& frame, float& time, Skeleton& skeleton, float deltaTime, sf::Vector2f &mousePosition, const std::vector<TileObject>& objects, const std::vector<Trap>& traps);
+    void Update(float& frame, float& time, Enemy& enemy, float deltaTime, sf::Vector2f &mousePosition, const std::vector<TileObject>& objects, const std::vector<Trap>& traps);
     void Draw(sf::RenderWindow& window);
-
+    void SetHealth(int h);
     int GetHealth() const;
-    void SetHealth(int health);
     void HandleTrapCollision();
+
+
     void Respawn();
 
     const sf::FloatRect GetGlobalBounds() const { return sprite.getGlobalBounds(); }

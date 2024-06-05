@@ -2,6 +2,8 @@
 #include <iostream>
 #include <sstream>
 #include "SFML/Graphics.hpp"
+#include <limits>
+#include <algorithm>
 
 TileMapData TileMap::loadTileMap(const std::string& filename) {
     TileMapData tileMap;
@@ -178,14 +180,12 @@ const sf::Texture& TileMap::getTileset() const {
     return m_tileset;
 }
 
-
-
-void TileMap::addQuad(const sf::Vertex* quad) {
-    for (auto& layer : m_layersVertices) {
-        sf::VertexArray& vertices = layer;
-        for (int i = 0; i < 4; ++i) {
-            vertices.append(quad[i]);
+std::vector<sf::Vector2f> TileMap::getSpawnPositions(const std::string& objectName) const {
+    std::vector<sf::Vector2f> positions;
+    for (const auto& object : m_tileMapData.objects) {
+        if (object.name == objectName) {
+            positions.emplace_back(object.x, object.y);
         }
     }
+    return positions;
 }
-

@@ -26,6 +26,14 @@ set(SOURCES
         Trap.h
         Shield.cpp
         Shield.h
+        Energy.cpp
+        Energy.h
+        TextureManager.cpp
+        TextureManager.h
+        MapManager.cpp
+        MapManager.h
+        Enemy.cpp
+        Enemy.h
 )
 
 add_executable(Game_1 ${SOURCES})

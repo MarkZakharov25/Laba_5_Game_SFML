@@ -5,6 +5,7 @@
 #include "TileMap.h"
 #include "Trap.h"
 #include "Shield.h"
+#include "Enemy.h"
 
 Player::Player() : maxFireRate(400), startPositionX(100), startPositionY(100) {
     maxHealth = 100;
@@ -67,7 +68,7 @@ void Player::Load() {
     ;
 }
 
-void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTime, sf::Vector2f &mousePosition, const std::vector<TileObject>& objects, const std::vector<Trap>& traps) {
+void Player::Update(float& frame, float& time, Enemy& enemy, float deltaTime, sf::Vector2f &mousePosition, const std::vector<TileObject>& objects, const std::vector<Trap>& traps) {
 
     fireRateTimer += deltaTime;
     jumpTimer += deltaTime;
@@ -78,7 +79,7 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
 
     shield.Update(deltaTime / 1000.0f);
 
-     for (const auto& trap : traps) {
+    for (const auto& trap : traps) {
         if (Math::IsCollisionHappen(sprite.getGlobalBounds(), trap.getSprite().getGlobalBounds())) {
             if (sprite.getPosition().y + sprite.getGlobalBounds().height <= trap.getPosition().y + 5) {
                 std::cout << "Collision with Trap from above" << std::endl;
@@ -106,11 +107,11 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
         container_of_fireball[i].Update(deltaTime);
         //COLLISION
 
-        if(skeleton.health > 0){
-            if(Math::IsCollisionHappen(container_of_fireball[i].GetGlobalBounds(), skeleton.sprite.getGlobalBounds())){
-                skeleton.ChangeHealth(-20);
+        if(enemy.health > 0){
+            if(Math::IsCollisionHappen(container_of_fireball[i].GetGlobalBounds(), enemy.sprite.getGlobalBounds())){
+                enemy.ChangeHealth(-20);
                 container_of_fireball.erase(container_of_fireball.begin() + i);
-                std::cout << "Skeleton health:" << skeleton.health << std::endl;
+                std::cout << "Skeleton health:" << enemy.health << std::endl;
 
             }
         }
@@ -174,9 +175,9 @@ void Player::Update(float& frame, float& time, Skeleton& skeleton, float deltaTi
 
     bounding_rect.setPosition(sprite.getPosition());
 
-    if (Math::IsCollisionHappen(sprite.getGlobalBounds(), skeleton.sprite.getGlobalBounds())) {
+    if (Math::IsCollisionHappen(sprite.getGlobalBounds(), enemy.sprite.getGlobalBounds())) {
         std::cout << "Collision with Skeleton" << std::endl;
-        sf::Vector2f pushDirection = sprite.getPosition() - skeleton.sprite.getPosition();
+        sf::Vector2f pushDirection = sprite.getPosition() - enemy.sprite.getPosition();
         float pushDistance = 1.0f;
         if (pushDirection.x > 0) {
             sprite.move(pushDistance, 0);
